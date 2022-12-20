@@ -10,6 +10,7 @@ export default function Form({ onAddActivity }) {
         console.log(data);
       }}
     >
+      <h1>Add new Activity:</h1>
       <label htmlFor="activity">Name</label>
       <input id="activity" name="activity" type="text"></input>
       <label htmlFor="isForGoodWeather">is for good weather?</label>

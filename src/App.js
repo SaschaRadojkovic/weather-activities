@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Form from "./components/Form/Form";
 import { uid } from "uid";
+import List from "./components/List/List";
 
 function App() {
   const [activities, setActivities] = useState([]);
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <Form onAddActivity={handleAddActivitiy} />
+      <List activities={activities} />
     </>
   );
 }
