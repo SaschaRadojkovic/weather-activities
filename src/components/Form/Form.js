@@ -3,19 +3,20 @@ export default function Form({ onAddActivity }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        onAddActivity(data);
 
-        console.log(data);
+        onAddActivity({
+          activity: event.target.elements.activity.value,
+          isForGoodWeather: event.target.elements.isForGoodWeather.checked,
+        });
+        event.target.reset();
+        event.target.activity.focus();
       }}
     >
       <h1>Add new Activity:</h1>
       <label htmlFor="activity">Name</label>
-      <input id="activity" name="activity" type="text"></input>
+      <input required id="activity" name="activity" type="text"></input>
       <label htmlFor="isForGoodWeather">is for good weather?</label>
       <input
-        value={true}
         type="checkbox"
         id="isForGoodWeather"
         name="isForGoodWeather"

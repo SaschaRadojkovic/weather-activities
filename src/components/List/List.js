@@ -7,6 +7,7 @@ export default function List({ weather, activities }) {
       </h2>
       <ul>
         {activities.map(({ isForGoodWeather, activity, id }) => {
+          console.log(isForGoodWeather, activity, id);
           return (
             <li key={id}>
               {activity}

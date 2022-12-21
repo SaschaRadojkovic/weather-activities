@@ -9,7 +9,7 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const [weather, setWeather] = useState("");
+  const [weather, setWeather] = useState({});
 
   useEffect(() => {
     async function fetchWeather() {
@@ -18,32 +18,28 @@ function App() {
       );
       const result = await response.json();
       setWeather(result);
-      console.log("result", result);
     }
     fetchWeather();
-    console.log("weather", weather);
   }, []);
 
   function handleAddActivitiy({ activity, isForGoodWeather = false }) {
-    console.log("act", activities);
     setActivities([...activities, { id: uid(), activity, isForGoodWeather }]);
   }
   const filteredActivities = activities.filter((activity) => {
-    return activity.isForGoodWeather === weather.isForGoodWeather;
+    return activity.isForGoodWeather === weather.isGoodWeather;
   });
-  console.log(activities);
 
   return (
     <>
       <h1>
         {weather.condition}
-        {weather.temperature} F
+        {weather.temperature} Grad Temperatur
       </h1>
       <Form onAddActivity={handleAddActivitiy} />
 
       <List
         weather={weather.isGoodWeather ? true : false}
-        activities={weather.isGoodWeather ? activities : filteredActivities}
+        activities={filteredActivities}
       />
     </>
   );
